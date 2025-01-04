@@ -17,7 +17,10 @@
   "homepage": "https://techg2.github.io/candor-rest-sdk/index.html",
   "keywords": ["candor", "rest", "sdk", "cache", "api", "typescript", "javascript", "orders"],
   "author": "TechG",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechG2/candor-rest-sdk/issues"
+  },
+  "license": "MIT",
   "description": "Unofficial REST Sdk for Candor Studio.",
   "devDependencies": {
     "@types/jest": "^29.5.14",
