@@ -9,25 +9,42 @@ import Cache from "./CacheAPI";
 
 /**
  *  CondorAPI
+ *
+ * @extends EventEmitter
+ * @class
  */
 export default class CandorAPI extends EventEmitter {
-  apiKey: string = "";
+  /**
+   * Candor public API key.
+   *
+   * @type {string}
+   */
+  apiKey: string;
 
   /**
-   * Configuration File
+   * Configuration file.
+   *
+   * @type {Config}
    */
   config: Config = config;
 
+  /**
+   * Init cache system.
+   *
+   * @type {Cache}
+   */
   cache: Cache;
 
   /**
-   * Candor API contructor
+   * Candor API constructor
    *
-   * @param {Types.CandorAPIOptions} options - constructor options
-   * @param {string} options.apiKey - Candor public API key
-   * @param {Types.ConfigOptions?} options.config - Config options.
-   * @param {string?} options.config.baseUrl - API base url @default https://api.candorstudios.net/api
-   * @param {string?} options.config.enableCache - Enables cache @default false
+   * @param {Types.CandorAPIOptions} options - Constructor options.
+   * @param {string} options.apiKey - Candor public API key.
+   * @param {Types.ConfigOptions} [options.config] - Configuration options.
+   * @param {string} [options.config.baseUrl] - API base URL.
+   *    @default options.config.baseUrl = "https://api.candorstudios.net/api"
+   * @param {boolean} [options.config.enableCache] - Enables cache.
+   *    @default options.config.enableCache = false
    */
   constructor(options: Types.CandorAPIOptions) {
     super();
@@ -45,7 +62,13 @@ export default class CandorAPI extends EventEmitter {
     this.cache = new Cache(this);
   }
 
-  // func
+  /**
+   * This method returns an array of objects.
+   *
+   * @param {string} freelancerId - Freelancer ID
+   * @returns {Promise<Review[]>}
+   * @throws {Error}
+   */
   async getReviews(freelancerId: string): Promise<Review[]> {
     try {
       const response = await axios.get(
@@ -68,6 +91,12 @@ export default class CandorAPI extends EventEmitter {
     }
   }
 
+  /**
+   * This method retrives your informations.
+   *
+   * @returns {Promise<User>}
+   * @throws {Error}
+   */
   async getMe(): Promise<User> {
     try {
       const response = await axios.get(
@@ -90,7 +119,12 @@ export default class CandorAPI extends EventEmitter {
     }
   }
 
-  // private
+  /**
+   * This method checks if API Key is valid.
+   *
+   * @returns {Promise<void>}
+   * @throws {Error}
+   */
   private async checkKey(): Promise<void> {
     try {
       const response = await axios.get(

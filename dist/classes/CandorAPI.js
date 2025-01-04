@@ -63,23 +63,29 @@ var Review_1 = __importDefault(require("./Review"));
 var CacheAPI_1 = __importDefault(require("./CacheAPI"));
 /**
  *  CondorAPI
+ *
+ * @extends EventEmitter
+ * @class
  */
 var CandorAPI = /** @class */ (function (_super) {
     __extends(CandorAPI, _super);
     /**
-     * Candor API contructor
+     * Candor API constructor
      *
-     * @param {Types.CandorAPIOptions} options - constructor options
-     * @param {string} options.apiKey - Candor public API key
-     * @param {Types.ConfigOptions?} options.config - Config options.
-     * @param {string?} options.config.baseUrl - API base url @default https://api.candorstudios.net/api
-     * @param {string?} options.config.enableCache - Enables cache @default false
+     * @param {Types.CandorAPIOptions} options - Constructor options.
+     * @param {string} options.apiKey - Candor public API key.
+     * @param {Types.ConfigOptions} [options.config] - Configuration options.
+     * @param {string} [options.config.baseUrl] - API base URL.
+     *    @default options.config.baseUrl = "https://api.candorstudios.net/api"
+     * @param {boolean} [options.config.enableCache] - Enables cache.
+     *    @default options.config.enableCache = false
      */
     function CandorAPI(options) {
         var _this = _super.call(this) || this;
-        _this.apiKey = "";
         /**
-         * Configuration File
+         * Configuration file.
+         *
+         * @type {Config}
          */
         _this.config = config_1.default;
         if (options.config) {
@@ -93,7 +99,13 @@ var CandorAPI = /** @class */ (function (_super) {
         _this.cache = new CacheAPI_1.default(_this);
         return _this;
     }
-    // func
+    /**
+     * This method returns an array of objects.
+     *
+     * @param {string} freelancerId - Freelancer ID
+     * @returns {Promise<Review[]>}
+     * @throws {Error}
+     */
     CandorAPI.prototype.getReviews = function (freelancerId) {
         return __awaiter(this, void 0, void 0, function () {
             var response, data, reviews, error_1;
@@ -123,6 +135,12 @@ var CandorAPI = /** @class */ (function (_super) {
             });
         });
     };
+    /**
+     * This method retrives your informations.
+     *
+     * @returns {Promise<User>}
+     * @throws {Error}
+     */
     CandorAPI.prototype.getMe = function () {
         return __awaiter(this, void 0, void 0, function () {
             var response, data, user, error_2;
@@ -151,7 +169,12 @@ var CandorAPI = /** @class */ (function (_super) {
             });
         });
     };
-    // private
+    /**
+     * This method checks if API Key is valid.
+     *
+     * @returns {Promise<void>}
+     * @throws {Error}
+     */
     CandorAPI.prototype.checkKey = function () {
         return __awaiter(this, void 0, void 0, function () {
             var response, data, error_3;

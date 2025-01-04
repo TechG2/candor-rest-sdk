@@ -42,7 +42,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
 var Review_1 = __importDefault(require("./Review"));
 var config_1 = __importDefault(require("../config"));
+/**
+ * CandorUser class.
+ *
+ * @class
+ */
 var User = /** @class */ (function () {
+    /**
+     * CandorUser constructor.
+     *
+     * @param {Types.Request.Me} user - User information.
+     * @param {CandorAPI} candorAPI - Candor API main class.
+     */
     function User(user, candorAPI) {
         this.freelancerId = user.uid;
         this.flags = user.flags;
@@ -54,6 +65,12 @@ var User = /** @class */ (function () {
         this.username = user.username;
         this.candorAPI = candorAPI;
     }
+    /**
+     * This method fetch all the reviews of a specific user.
+     *
+     * @returns {Promise<Review[]>}
+     * @throws {Error}
+     */
     User.prototype.getReviews = function () {
         return __awaiter(this, void 0, void 0, function () {
             var response, data, reviews, error_1;

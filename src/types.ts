@@ -1,8 +1,30 @@
 import User from "./classes/User";
 
+/**
+ * Types namespace.
+ *
+ * @namespace
+ */
 export namespace Types {
+  /**
+   * Main API class options.
+   *
+   * @type {{ apiKey: string; config?: ConfigOptions }}
+   */
   export type CandorAPIOptions = { apiKey: string; config?: ConfigOptions };
+
+  /**
+   * Config class options.
+   *
+   * @type {{ baseUrl?: string; enableCache?: boolean }}
+   */
   export type ConfigOptions = { baseUrl?: string; enableCache?: boolean };
+
+  /**
+   * Frelancer profile type.
+   *
+   * @type {{ portfolio: string; timezone: string; rating: string; services?: string[]; }}
+   */
   export type FreelacerProfile = {
     portfolio: string;
     timezone: string;
@@ -10,6 +32,11 @@ export namespace Types {
     services?: string[];
   };
 
+  /**
+   * CandorUser interface.
+   *
+   * @interface
+   */
   export interface UserInterface {
     freelancerId: string | undefined;
     flags: string[];
@@ -20,6 +47,12 @@ export namespace Types {
     contactEmail: string | undefined;
     username: string;
   }
+
+  /**
+   * CandorReview interface.
+   *
+   * @interface
+   */
   export interface ReviewInterface {
     rating: number;
     review: string;
@@ -27,12 +60,25 @@ export namespace Types {
     reviewed: User;
   }
 
+  /**
+   * User type enum. This value depends on how you created your account.
+   *
+   * @enum
+   */
   export enum UserType {
     Native,
     Discord,
   }
 
+  /**
+   * Request namespace. All these types/interfaces all used during https requests.
+   *
+   * @namespace
+   */
   export namespace Request {
+    /**
+     * Used in freelancers/@me endpoint.
+     */
     export type Me = {
       uid: string;
       email_opt_out: boolean;
@@ -47,6 +93,9 @@ export namespace Types {
       username: string;
     };
 
+    /**
+     * Used in reviews/freelancer/:userId endpoint.
+     */
     export type Review = {
       rating: number;
       reviewed: Me;
@@ -56,6 +105,11 @@ export namespace Types {
   }
 }
 
+/**
+ * Events enum.
+ *
+ * @enum
+ */
 export enum Events {
   Ready = "ready",
 }

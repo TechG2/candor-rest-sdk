@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "docs": "npx typedoc src --plugin typedoc-github-theme"
   },
   "types": "dist/types/index.d.ts",
   "files": [
@@ -38,6 +39,7 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.27.6",
+    "typedoc-github-theme": "^0.2.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {
