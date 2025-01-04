@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "strict": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "strictPropertyInitialization": false,
+  },
+  "include": ["src/**/*.ts"]
+}
